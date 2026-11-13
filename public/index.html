@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Almacén SimCo</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+  </head>
+  <body>
+    <header class="topnav">
+      <div class="topnav-inner">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <div>
+            <p class="brand-kicker">Micro-ERP · Módulo A</p>
+            <h1>Almacén SimCo</h1>
+          </div>
+        </div>
+        <nav class="tabs" aria-label="Secciones">
+          <button class="tab is-active" data-view="overview">Resumen</button>
+          <button class="tab" data-view="inventory">Inventario</button>
+          <button class="tab" data-view="moves">Movimientos</button>
+        </nav>
+        <div class="topnav-actions">
+          <button id="btn-sync" class="btn btn-primary">Actualizar precios</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="page">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow" id="view-eyebrow">Operaciones</p>
+          <h2 id="view-title">Resumen</h2>
+        </div>
+        <p id="status" class="status" role="status"></p>
+      </div>
+
+      <section id="view-overview" class="view is-visible">
+        <div id="metrics" class="metrics"></div>
+        <div class="grid-2">
+          <article class="surface">
+            <h3>Valor por categoría</h3>
+            <p class="muted">Distribución del inventario (costo Nexo)</p>
+            <div class="chart-box"><canvas id="chart-category"></canvas></div>
+          </article>
+          <article class="surface">
+            <h3>Top existencias</h3>
+            <p class="muted">Productos con mayor stock</p>
+            <div class="chart-box"><canvas id="chart-stock"></canvas></div>
+          </article>
+        </div>
+        <p id="sync-meta" class="meta-line muted"></p>
+      </section>
+
+      <section id="view-inventory" class="view">
+        <div class="toolbar">
+          <input id="search" class="input grow" type="search" placeholder="Buscar producto…" />
+          <select id="filter-category" class="input select">
+            <option value="">Todas</option>
+            <option value="insumo">Insumos</option>
+            <option value="terminado">Terminados</option>
+          </select>
+          <button type="button" id="btn-new-product" class="btn btn-primary">Nuevo producto</button>
+          <button type="button" id="btn-new-movement" class="btn btn-secondary">Movimiento</button>
+        </div>
+        <div id="products-empty" class="empty hidden">No hay productos. Ejecuta <code>npm run seed</code>.</div>
+        <div id="products-error" class="error hidden"></div>
+
+        <article class="surface table-surface">
+          <div class="table-scroll">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Producto</th>
+                  <th>Categoría</th>
+                  <th class="num">Stock</th>
+                  <th class="num">Costo Nexo</th>
+                  <th class="num">Precio mercado</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="products-body"></tbody>
+            </table>
+          </div>
+          <div class="pager" id="products-pager"></div>
+        </article>
+      </section>
+
+      <section id="view-moves" class="view">
+        <article class="surface table-surface">
+          <div class="table-head-row">
+            <div>
+              <h3>Historial</h3>
+              <p class="muted">Entradas y salidas del Micro-ERP</p>
+            </div>
+            <button type="button" id="btn-new-movement-2" class="btn btn-secondary">Nuevo movimiento</button>
+          </div>
+          <div class="table-scroll">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Fecha</th>
+                  <th>Producto</th>
+                  <th>Tipo</th>
+                  <th class="num">Cantidad</th>
+                  <th class="num">Precio u.</th>
+                  <th>Nota</th>
+                </tr>
+              </thead>
+              <tbody id="movements-body"></tbody>
+            </table>
+          </div>
+          <div class="pager" id="movements-pager"></div>
+        </article>
+      </section>
+    </main>
+
+    <!-- Product dialog -->
+    <dialog id="product-dialog" class="dialog">
+      <form id="product-form" method="dialog" class="dialog-card">
+        <div class="dialog-head">
+          <h3 id="product-dialog-title">Nuevo producto</h3>
+          <button type="button" class="icon-btn" data-close="product-dialog" aria-label="Cerrar">×</button>
+        </div>
+        <p class="muted">Alta o edición del catálogo</p>
+        <input type="hidden" id="product-id" />
+        <div class="dialog-body">
+          <label>ID SimCompanies<input id="simcoResourceId" class="input" type="number" required /></label>
+          <label>Nombre<input id="name" class="input" type="text" required /></label>
+          <label>Categoría
+            <select id="category" class="input select">
+              <option value="insumo">Insumo</option>
+              <option value="terminado">Terminado</option>
+            </select>
+          </label>
+          <div class="row-2">
+            <label>Costo Nexo<input id="unitProductionCost" class="input" type="number" step="0.01" min="0" value="0" /></label>
+            <label>Precio mercado<input id="marketPrice" class="input" type="number" step="0.01" min="0" value="0" /></label>
+          </div>
+          <label>Transporte<input id="transportCost" class="input" type="number" step="0.01" min="0" value="0" /></label>
+          <label>Stock inicial<input id="stock" class="input" type="number" step="0.01" min="0" value="0" /></label>
+        </div>
+        <div class="dialog-actions">
+          <button type="button" class="btn btn-secondary" data-close="product-dialog">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- Movement dialog -->
+    <dialog id="movement-dialog" class="dialog">
+      <form id="movement-form" method="dialog" class="dialog-card">
+        <div class="dialog-head">
+          <h3>Nuevo movimiento</h3>
+          <button type="button" class="icon-btn" data-close="movement-dialog" aria-label="Cerrar">×</button>
+        </div>
+        <p class="muted">Entrada o salida de stock</p>
+        <div class="dialog-body">
+          <label>Producto<select id="movement-productId" class="input select" required></select></label>
+          <label>Tipo
+            <select id="movement-type" class="input select">
+              <option value="production">Entrada · Producción</option>
+              <option value="purchase">Entrada · Compra</option>
+              <option value="sale">Salida · Venta</option>
+              <option value="discard">Salida · Descarte</option>
+            </select>
+          </label>
+          <label>Cantidad<input id="movement-quantity" class="input" type="number" min="0.01" step="0.01" value="10" required /></label>
+          <label>Nota<input id="movement-note" class="input" type="text" placeholder="Opcional" /></label>
+        </div>
+        <div class="dialog-actions">
+          <button type="button" class="btn btn-secondary" data-close="movement-dialog">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Registrar</button>
+        </div>
+      </form>
+    </dialog>
+
+    <footer class="footer">
+      Inventario desde Nexo · precio sugerido desde API Sim Companies (GET)
+    </footer>
+    <script src="/js/app.js" type="module"></script>
+  </body>
+</html>

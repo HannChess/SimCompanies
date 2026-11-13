@@ -1,0 +1,200 @@
+{
+  "info": {
+    "name": "Almacén SimCo — Micro-ERP Módulo A",
+    "description": "API REST Express del Micro-ERP de Inventario. Base: http://127.0.0.1:3847",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://127.0.0.1:3847" },
+    { "key": "productId", "value": "121" }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "GET Health",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/health"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Productos",
+      "item": [
+        {
+          "name": "Listar productos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/products?category=&q=",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "products"],
+              "query": [
+                { "key": "category", "value": "insumo", "disabled": true, "description": "insumo | terminado" },
+                { "key": "q", "value": "Acero", "disabled": true, "description": "Búsqueda por nombre" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Obtener producto por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/products/{{productId}}"
+          }
+        },
+        {
+          "name": "Crear producto",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"simcoResourceId\": 99901,\n  \"name\": \"Producto prueba\",\n  \"category\": \"insumo\",\n  \"unitProductionCost\": 10.5,\n  \"marketPrice\": 14.2,\n  \"transportCost\": 0.5,\n  \"stock\": 100,\n  \"imageUrl\": null\n}"
+            },
+            "url": "{{baseUrl}}/api/products"
+          }
+        },
+        {
+          "name": "Actualizar producto",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Acero laminado\",\n  \"marketPrice\": 12.5,\n  \"unitProductionCost\": 9.1,\n  \"stock\": 1300\n}"
+            },
+            "url": "{{baseUrl}}/api/products/{{productId}}"
+          }
+        },
+        {
+          "name": "Eliminar producto",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/api/products/{{productId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Movimientos",
+      "item": [
+        {
+          "name": "Listar movimientos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/movements?productId=",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "movements"],
+              "query": [
+                { "key": "productId", "value": "{{productId}}", "disabled": true }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Registrar compra (entrada)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": 121,\n  \"type\": \"purchase\",\n  \"quantity\": 50,\n  \"unitPrice\": 8.7,\n  \"note\": \"Compra a proveedor\"\n}"
+            },
+            "url": "{{baseUrl}}/api/movements"
+          }
+        },
+        {
+          "name": "Registrar producción (entrada)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": 121,\n  \"type\": \"production\",\n  \"quantity\": 20,\n  \"note\": \"Lote de planta\"\n}"
+            },
+            "url": "{{baseUrl}}/api/movements"
+          }
+        },
+        {
+          "name": "Registrar venta (salida)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": 121,\n  \"type\": \"sale\",\n  \"quantity\": 10,\n  \"unitPrice\": 11.1,\n  \"note\": \"Venta exchange\"\n}"
+            },
+            "url": "{{baseUrl}}/api/movements"
+          }
+        },
+        {
+          "name": "Registrar descarte (salida)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": 121,\n  \"type\": \"discard\",\n  \"quantity\": 2,\n  \"note\": \"Merma\"\n}"
+            },
+            "url": "{{baseUrl}}/api/movements"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Dashboard",
+      "item": [
+        {
+          "name": "GET Dashboard",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/dashboard"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sync SimCompanies",
+      "item": [
+        {
+          "name": "Sync precios de mercado",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "url": "{{baseUrl}}/api/sync/prices",
+            "description": "Solo actualiza marketPrice. No toca stock ni costo Nexo. Body vacío."
+          }
+        }
+      ]
+    }
+  ]
+}

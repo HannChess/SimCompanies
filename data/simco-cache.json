@@ -1,0 +1,276 @@
+{
+  "generatedAt": "2026-03-26T00:00:00.000Z",
+  "realm": 0,
+  "economy": 1,
+  "source": "fallback-cache",
+  "company": {
+    "name": "Demo Co (cache)",
+    "level": 12
+  },
+  "resources": [
+    {
+      "simcoResourceId": 1,
+      "name": "Power",
+      "category": "insumo",
+      "unitProductionCost": 0.18,
+      "marketPrice": 0.26,
+      "transportCost": 0.0,
+      "producedAnHour": 1200,
+      "marketSaturation": 0.42,
+      "stock": 5000
+    },
+    {
+      "simcoResourceId": 2,
+      "name": "Water",
+      "category": "insumo",
+      "unitProductionCost": 0.22,
+      "marketPrice": 0.37,
+      "transportCost": 0.02,
+      "producedAnHour": 900,
+      "marketSaturation": 0.51,
+      "stock": 3200
+    },
+    {
+      "simcoResourceId": 3,
+      "name": "Apples",
+      "category": "terminado",
+      "unitProductionCost": 1.85,
+      "marketPrice": 2.4,
+      "transportCost": 0.15,
+      "producedAnHour": 85,
+      "marketSaturation": 0.58,
+      "stock": 640
+    },
+    {
+      "simcoResourceId": 4,
+      "name": "Oranges",
+      "category": "terminado",
+      "unitProductionCost": 1.9,
+      "marketPrice": 2.55,
+      "transportCost": 0.15,
+      "producedAnHour": 80,
+      "marketSaturation": 0.55,
+      "stock": 410
+    },
+    {
+      "simcoResourceId": 5,
+      "name": "Grapes",
+      "category": "terminado",
+      "unitProductionCost": 2.1,
+      "marketPrice": 2.9,
+      "transportCost": 0.18,
+      "producedAnHour": 70,
+      "marketSaturation": 0.6,
+      "stock": 280
+    },
+    {
+      "simcoResourceId": 6,
+      "name": "Grain",
+      "category": "insumo",
+      "unitProductionCost": 0.45,
+      "marketPrice": 0.62,
+      "transportCost": 0.05,
+      "producedAnHour": 400,
+      "marketSaturation": 0.48,
+      "stock": 1800
+    },
+    {
+      "simcoResourceId": 8,
+      "name": "Crude oil",
+      "category": "insumo",
+      "unitProductionCost": 24.5,
+      "marketPrice": 29.75,
+      "transportCost": 0.4,
+      "producedAnHour": 45,
+      "marketSaturation": 0.39,
+      "stock": 220
+    },
+    {
+      "simcoResourceId": 10,
+      "name": "Petrol",
+      "category": "terminado",
+      "unitProductionCost": 33.0,
+      "marketPrice": 40.5,
+      "transportCost": 0.5,
+      "producedAnHour": 55,
+      "marketSaturation": 0.44,
+      "stock": 150
+    },
+    {
+      "simcoResourceId": 11,
+      "name": "Diesel",
+      "category": "terminado",
+      "unitProductionCost": 32.5,
+      "marketPrice": 40.0,
+      "transportCost": 0.5,
+      "producedAnHour": 52,
+      "marketSaturation": 0.46,
+      "stock": 175
+    },
+    {
+      "simcoResourceId": 13,
+      "name": "Transport",
+      "category": "insumo",
+      "unitProductionCost": 0.28,
+      "marketPrice": 0.39,
+      "transportCost": 0.0,
+      "producedAnHour": 2000,
+      "marketSaturation": 0.5,
+      "stock": 9000
+    },
+    {
+      "simcoResourceId": 14,
+      "name": "Minerals",
+      "category": "insumo",
+      "unitProductionCost": 8.4,
+      "marketPrice": 11.3,
+      "transportCost": 0.25,
+      "producedAnHour": 95,
+      "marketSaturation": 0.47,
+      "stock": 500
+    },
+    {
+      "simcoResourceId": 15,
+      "name": "Bauxite",
+      "category": "insumo",
+      "unitProductionCost": 7.2,
+      "marketPrice": 9.8,
+      "transportCost": 0.22,
+      "producedAnHour": 90,
+      "marketSaturation": 0.43,
+      "stock": 360
+    },
+    {
+      "simcoResourceId": 16,
+      "name": "Silicon",
+      "category": "insumo",
+      "unitProductionCost": 5.8,
+      "marketPrice": 8.1,
+      "transportCost": 0.2,
+      "producedAnHour": 110,
+      "marketSaturation": 0.52,
+      "stock": 420
+    },
+    {
+      "simcoResourceId": 17,
+      "name": "Chemicals",
+      "category": "insumo",
+      "unitProductionCost": 11.0,
+      "marketPrice": 15.3,
+      "transportCost": 0.3,
+      "producedAnHour": 75,
+      "marketSaturation": 0.49,
+      "stock": 260
+    },
+    {
+      "simcoResourceId": 18,
+      "name": "Aluminium",
+      "category": "terminado",
+      "unitProductionCost": 16.5,
+      "marketPrice": 21.4,
+      "transportCost": 0.35,
+      "producedAnHour": 60,
+      "marketSaturation": 0.41,
+      "stock": 190
+    },
+    {
+      "simcoResourceId": 20,
+      "name": "Steel",
+      "category": "terminado",
+      "unitProductionCost": 12.8,
+      "marketPrice": 16.9,
+      "transportCost": 0.32,
+      "producedAnHour": 65,
+      "marketSaturation": 0.45,
+      "stock": 310
+    },
+    {
+      "simcoResourceId": 21,
+      "name": "Planks",
+      "category": "insumo",
+      "unitProductionCost": 6.1,
+      "marketPrice": 8.4,
+      "transportCost": 0.28,
+      "producedAnHour": 100,
+      "marketSaturation": 0.53,
+      "stock": 700
+    },
+    {
+      "simcoResourceId": 24,
+      "name": "Smartphones",
+      "category": "terminado",
+      "unitProductionCost": 420.0,
+      "marketPrice": 560.0,
+      "transportCost": 2.5,
+      "producedAnHour": 8,
+      "marketSaturation": 0.61,
+      "stock": 42
+    },
+    {
+      "simcoResourceId": 25,
+      "name": "Tablets",
+      "category": "terminado",
+      "unitProductionCost": 380.0,
+      "marketPrice": 510.0,
+      "transportCost": 2.2,
+      "producedAnHour": 9,
+      "marketSaturation": 0.57,
+      "stock": 35
+    },
+    {
+      "simcoResourceId": 26,
+      "name": "Laptops",
+      "category": "terminado",
+      "unitProductionCost": 780.0,
+      "marketPrice": 1050.0,
+      "transportCost": 4.0,
+      "producedAnHour": 4,
+      "marketSaturation": 0.54,
+      "stock": 18
+    },
+    {
+      "simcoResourceId": 40,
+      "name": "Car",
+      "category": "terminado",
+      "unitProductionCost": 9200.0,
+      "marketPrice": 12400.0,
+      "transportCost": 80.0,
+      "producedAnHour": 0.35,
+      "marketSaturation": 0.36,
+      "stock": 6
+    },
+    {
+      "simcoResourceId": 55,
+      "name": "Chips",
+      "category": "insumo",
+      "unitProductionCost": 95.0,
+      "marketPrice": 128.0,
+      "transportCost": 0.8,
+      "producedAnHour": 22,
+      "marketSaturation": 0.5,
+      "stock": 95
+    },
+    {
+      "simcoResourceId": 56,
+      "name": "Processors",
+      "category": "insumo",
+      "unitProductionCost": 210.0,
+      "marketPrice": 285.0,
+      "transportCost": 1.1,
+      "producedAnHour": 12,
+      "marketSaturation": 0.48,
+      "stock": 55
+    },
+    {
+      "simcoResourceId": 98,
+      "name": "Seeds",
+      "category": "insumo",
+      "unitProductionCost": 0.12,
+      "marketPrice": 0.19,
+      "transportCost": 0.01,
+      "producedAnHour": 1500,
+      "marketSaturation": 0.4,
+      "stock": 12000
+    }
+  ]
+}

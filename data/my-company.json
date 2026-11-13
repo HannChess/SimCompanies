@@ -1,0 +1,19 @@
+{
+  "authCompany": {
+    "companyId": 5765615,
+    "company": "LNI103.NEMKI GLOBAL",
+    "money": 17421,
+    "rank": 18713,
+    "level": 18,
+    "realmId": 0,
+    "simBoosts": 127
+  },
+  "levelInfo": {
+    "levelName": "Comerciante individual",
+    "ratingCode": "BB+",
+    "level": 18,
+    "experience": 2604,
+    "experienceToNextLevel": 42000,
+    "maxBuildings": 8
+  }
+}
